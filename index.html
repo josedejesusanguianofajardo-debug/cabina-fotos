@@ -14,13 +14,13 @@
 html,body{height:100%}
 body{font-family:Outfit,system-ui,sans-serif;color:var(--ink);min-height:100%;overflow-x:hidden;background:radial-gradient(1200px 600px at 10% -10%,rgba(255,45,149,.28),transparent 55%),radial-gradient(900px 500px at 110% 10%,rgba(34,240,255,.18),transparent 50%),var(--bg)}
 .app{max-width:1120px;margin:0 auto;padding:18px 16px 28px;display:grid;gap:16px}
-header{display:flex;align-items:center;justify-content:space-between;gap:12px}
+header{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
 .logo{font-family:Bungee,sans-serif;font-size:clamp(22px,4vw,34px);letter-spacing:1px;line-height:1;text-shadow:0 0 18px rgba(255,45,149,.6)}
 .logo span{color:var(--cyan)}
 .status{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);padding:8px 12px;border-radius:999px;font-size:13px;font-weight:600;color:var(--muted)}
 .status i{width:9px;height:9px;border-radius:50%;background:#6b5a78;display:inline-block}
 .status.live i{background:var(--ok);box-shadow:0 0 10px var(--ok);animation:pulse 1.4s infinite}
-.status.wait i{background:var(--gold);box-shadow:0 0 10px var(--gold)}
+.status.wait i{background:var(--gold)}
 .status.bad i{background:var(--danger)}
 @keyframes pulse{50%{opacity:.35}}
 .layout{display:grid;grid-template-columns:1fr;gap:16px}
@@ -38,13 +38,16 @@ video.mirror{transform:scaleX(-1)}
 .live-pill{position:absolute;top:14px;left:14px;display:none;align-items:center;gap:6px;background:rgba(0,0,0,.45);color:var(--cream);font-size:11px;font-weight:800;letter-spacing:1.4px;padding:6px 10px;border-radius:999px}
 .live-pill.on{display:inline-flex}
 .live-pill b{width:7px;height:7px;border-radius:50%;background:#ff3b3b;animation:pulse 1s infinite}
-.overlay{position:absolute;inset:0;display:grid;place-items:center;padding:22px;text-align:center;background:linear-gradient(180deg,rgba(18,8,26,.35),rgba(18,8,26,.72))}
+.overlay{position:absolute;inset:0;display:grid;place-items:center;padding:16px;text-align:center;background:linear-gradient(180deg,rgba(18,8,26,.35),rgba(18,8,26,.72));overflow:auto}
 .overlay.hidden{display:none}
-.card{width:min(100%,360px);background:rgba(18,8,26,.78);border:1px solid rgba(255,255,255,.12);border-radius:24px;padding:22px 18px 18px;backdrop-filter:blur(16px)}
-.card h2{font-family:Bungee,sans-serif;font-size:22px;margin-bottom:8px}
-.card p{color:var(--muted);font-size:14px;line-height:1.45;margin-bottom:16px}
+.card{width:min(100%,380px);background:rgba(18,8,26,.82);border:1px solid rgba(255,255,255,.12);border-radius:24px;padding:20px 16px 16px;backdrop-filter:blur(16px)}
+.card h2{font-family:Bungee,sans-serif;font-size:20px;margin-bottom:8px}
+.card p{color:var(--muted);font-size:14px;line-height:1.45;margin-bottom:14px}
+.perm{font-size:12px;font-weight:800;color:var(--gold);margin-bottom:8px}
+.steps{text-align:left;color:var(--cream);font-size:13px;line-height:1.4;margin:0 0 14px;padding-left:18px}
+.steps li{margin:0 0 8px}
 .actions{display:flex;flex-direction:column;gap:8px}
-.btn{appearance:none;border:0;cursor:pointer;font-family:Outfit,sans-serif;font-weight:800;border-radius:999px;padding:14px 18px;background:linear-gradient(180deg,#ff5eb0,var(--pink));color:#fff;box-shadow:0 10px 24px rgba(255,45,149,.35);font-size:16px}
+.btn{appearance:none;border:0;cursor:pointer;font-family:Outfit,sans-serif;font-weight:800;border-radius:999px;padding:13px 16px;background:linear-gradient(180deg,#ff5eb0,var(--pink));color:#fff;box-shadow:0 10px 24px rgba(255,45,149,.35);font-size:15px}
 .btn.ghost{background:rgba(255,255,255,.08);color:var(--cream);box-shadow:none;border:1px solid rgba(255,255,255,.12)}
 .btn.cyan{background:linear-gradient(180deg,#7af7ff,var(--cyan));color:#081318;box-shadow:0 10px 24px rgba(34,240,255,.28)}
 .spin{width:46px;height:46px;margin:0 auto 12px;border:4px solid rgba(255,255,255,.15);border-top-color:var(--cyan);border-radius:50%;animation:spin .8s linear infinite}
@@ -58,12 +61,11 @@ video.mirror{transform:scaleX(-1)}
 @keyframes flash{0%{opacity:.95}100%{opacity:0}}
 .controls{display:flex;align-items:center;justify-content:center;gap:14px;padding:14px 6px 4px}
 .icon-btn{width:48px;height:48px;border-radius:50%;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.07);color:var(--cream);display:grid;place-items:center;cursor:pointer}
-.icon-btn:disabled{opacity:.35;cursor:not-allowed}
+.icon-btn:disabled,.shutter:disabled{opacity:.4;cursor:not-allowed}
 .icon-btn.hidden{display:none}
-.shutter{width:86px;height:86px;border-radius:50%;border:6px solid #fff;background:radial-gradient(circle at 50% 40%,#ff7ac2,var(--pink) 58%,#c0126a);box-shadow:0 0 0 6px rgba(255,45,149,.25),0 16px 30px rgba(255,45,149,.35);cursor:pointer;position:relative}
+.shutter{width:86px;height:86px;border-radius:50%;border:6px solid #fff;background:radial-gradient(circle at 50% 40%,#ff7ac2,var(--pink) 58%,#c0126a);box-shadow:0 0 0 6px rgba(255,45,149,.25);cursor:pointer;position:relative}
 .shutter::after{content:"";position:absolute;inset:10px;border-radius:50%;border:2px dashed rgba(255,255,255,.45)}
-.shutter:disabled{opacity:.4;cursor:not-allowed}
-.toolbar{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;padding:4px 4px 8px}
+.toolbar{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;padding:4px}
 .chip{border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.06);color:var(--cream);border-radius:999px;padding:8px 12px;font-weight:700;font-size:13px;cursor:pointer}
 .chip.active{background:var(--gold);color:#2a1600;border-color:transparent}
 .side{display:grid;gap:12px}
@@ -74,10 +76,10 @@ video.mirror{transform:scaleX(-1)}
 .filter span{width:100%;height:36px;border-radius:8px;display:block;background:linear-gradient(45deg,#ffb3d9,#86f3ff 50%,#ffd166)}
 .filter em{font-style:normal;font-size:11px;font-weight:700}
 .filter.active{outline:2px solid var(--cyan)}
-.gallery-wrap{background:var(--film);border-radius:22px;padding:12px;border:1px solid rgba(255,255,255,.08)}
+.gallery-wrap{background:var(--film);border-radius:22px;padding:12px}
 .gallery-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;color:var(--muted);font-size:12px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase}
 .film{display:flex;gap:10px;overflow-x:auto;padding:10px 4px 8px}
-.sprockets{height:10px;background:repeating-linear-gradient(90deg,#0b090c 0 10px,transparent 10px 22px);border-radius:2px}
+.sprockets{height:10px;background:repeating-linear-gradient(90deg,#0b090c 0 10px,transparent 10px 22px)}
 .empty{color:#8a748f;font-size:13px;padding:18px 8px;text-align:center;width:100%}
 .shot{flex:0 0 108px;background:#fff6e8;color:#1b1220;border-radius:6px 6px 14px 14px;padding:6px 6px 18px;cursor:pointer;position:relative}
 .shot img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block;border-radius:3px}
@@ -114,11 +116,15 @@ video.mirror{transform:scaleX(-1)}
 <button class="shutter" id="btnShot" disabled aria-label="Tomar foto"></button>
 <button class="icon-btn" id="btnDl" disabled title="Descargar última" aria-label="Descargar última foto"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M5 21h14"/></svg></button>
 </div>
-<p class="hint">Un toque pide permiso y enciende · Espacio dispara</p>
+<p class="hint">Aceptar y encender pide el permiso · Espacio dispara</p>
 </section>
 <aside class="side">
 <div class="panel"><h3>Filtros</h3><div class="filters" id="filters"></div></div>
-<div class="panel"><h3>Tips de cabina</h3><p style="color:var(--muted);font-size:13px;line-height:1.5">Pulsa <b style="color:#fff">Aceptar y encender</b>, luego <b style="color:#fff">Permitir</b> en el diálogo del navegador. Si no sale, ábrela en una pestaña nueva.</p></div>
+<div class="panel">
+<h3>Permisos del navegador</h3>
+<p id="permHint" style="color:var(--muted);font-size:13px;line-height:1.5;margin-bottom:10px">Detectando tu navegador…</p>
+<button class="btn ghost" id="btnSideHelp" type="button" style="width:100%">Ver cómo configurarlos</button>
+</div>
 </aside>
 </div>
 <section class="gallery-wrap">
@@ -134,44 +140,55 @@ video.mirror{transform:scaleX(-1)}
 const FILTERS=[{id:'natural',name:'Natural',css:'none'},{id:'bn',name:'B&N',css:'grayscale(1) contrast(1.08)'},{id:'sepia',name:'Sepia',css:'sepia(.9) contrast(1.08)'},{id:'vintage',name:'Vintage',css:'sepia(.4) contrast(1.18) saturate(.8) brightness(1.05)'},{id:'neon',name:'Neón',css:'saturate(1.85) contrast(1.22) hue-rotate(318deg)'},{id:'frio',name:'Frío',css:'hue-rotate(165deg) saturate(.95) contrast(1.12) brightness(1.05)'},{id:'calido',name:'Cálido',css:'sepia(.28) saturate(1.4) brightness(1.08)'},{id:'pop',name:'Pop',css:'saturate(1.75) contrast(1.28)'},{id:'noir',name:'Noir',css:'grayscale(1) contrast(1.45) brightness(.95)'},{id:'sueno',name:'Sueño',css:'blur(1.1px) brightness(1.14) saturate(1.2)'},{id:'candy',name:'Candy',css:'hue-rotate(300deg) saturate(1.55) contrast(1.1)'},{id:'cinema',name:'Cinema',css:'contrast(1.22) saturate(.82) brightness(.98)'}];
 const video=document.getElementById('video'),overlay=document.getElementById('overlay'),statusEl=document.getElementById('status'),livePill=document.getElementById('livePill'),btnShot=document.getElementById('btnShot'),btnFlip=document.getElementById('btnFlip'),btnDl=document.getElementById('btnDl'),filtersEl=document.getElementById('filters'),film=document.getElementById('film'),countEl=document.getElementById('count'),flashEl=document.getElementById('flash'),box=document.getElementById('box'),boxImg=document.getElementById('boxImg');
 const OPEN_URL='https://cdn.jsdelivr.net/gh/josedejesusanguianofajardo-debug/cabina-fotos@main/index.html';
-let stream=null,facing='user',filter=FILTERS[0],mode='single',timer=3,busy=false,shots=[],lastId=null,openId=null,starting=false;
+let stream=null,facing='user',filter=FILTERS[0],mode='single',timer=3,busy=false,shots=[],lastId=null,openId=null,starting=false,permState='prompt';
 function inFrame(){try{return window.self!==window.top;}catch(e){return true;}}
 function cameraPolicyBlocked(){try{if(document.permissionsPolicy&&document.permissionsPolicy.allows)return !document.permissionsPolicy.allows('camera');if(document.featurePolicy&&document.featurePolicy.allowsFeature)return !document.featurePolicy.allowsFeature('camera');}catch(e){}return false;}
+function detectBrowser(){var ua=navigator.userAgent,ios=/iPhone|iPad|iPod/.test(ua),and=/Android/.test(ua);if(/Edg\//.test(ua))return {id:'edge',name:'Microsoft Edge',mobile:and};if(/Firefox|FxiOS/.test(ua))return {id:'firefox',name:'Firefox',mobile:and||ios};if(/CriOS/.test(ua))return {id:'chromeios',name:'Chrome en iPhone',mobile:true};if(/Safari/.test(ua)&&!/Chrome|CriOS|Chromium|Edg/.test(ua))return {id:'safari',name:ios?'Safari en iPhone':'Safari',mobile:ios};if(/Chrome|Chromium/.test(ua))return {id:'chrome',name:and?'Chrome en Android':'Chrome',mobile:and};return {id:'other',name:'tu navegador',mobile:ios||and};}
+function helpSteps(){var b=detectBrowser();
+if(b.id==='safari'&&b.mobile)return ['Abre <b>Ajustes</b> del iPhone o iPad.','Entra en <b>Safari</b> (o en Chrome, si usas Chrome).','Toca <b>Cámara</b> y elige Preguntar o Permitir.','Vuelve aquí y pulsa Aceptar y encender.'];
+if(b.id==='safari')return ['Menú Safari → Ajustes… → Sitios web.','Elige <b>Cámara</b>.','Este sitio → Permitir.','Recarga y pulsa Aceptar y encender.'];
+if(b.id==='firefox')return ['Pulsa el <b>candado</b> a la izquierda de la URL.','Permisos → Usar la cámara → Permitir.','Si está bloqueado, quita el bloqueo y recarga.'];
+if(b.id==='chromeios')return ['iOS limita la cámara en Chrome. Mejor usa <b>Safari</b>.','O: Ajustes → Chrome → Cámara → Permitir.','Vuelve y pulsa Aceptar y encender.'];
+return ['Pulsa el <b>candado</b> (o la cámara tachada) junto a la URL.','Permisos del sitio → <b>Cámara → Permitir</b>.','Si no hay candado: menú ⋮ → Configuración → Privacidad → Cámara.','Vuelve y pulsa Aceptar y encender.'];}
 function setStatus(kind,text){statusEl.className='status '+kind;statusEl.querySelector('span').textContent=text;}
 function showOverlay(html){overlay.classList.remove('hidden');overlay.innerHTML=html;wireOverlay();}
 function hideOverlay(){overlay.classList.add('hidden');overlay.innerHTML='';}
-function wireOverlay(){var s=document.getElementById('btnStart'),t=document.getElementById('btnTab');if(s)s.onclick=function(e){e.stopPropagation();startCamera(true);};if(t)t.onclick=function(e){e.stopPropagation();window.open(OPEN_URL,'_blank','noopener');};}
-function startButtons(){return '<div class="actions"><button class="btn" id="btnStart" type="button">Aceptar y encender</button>'+(inFrame()?'<button class="btn cyan" id="btnTab" type="button">Abrir en pestaña nueva</button>':'')+'</div>';}
-function idleCard(msg){showOverlay('<div class="card"><h2>¡Sonríe!</h2><p>'+(msg||'Pulsa el botón y, en el diálogo del navegador, elige <b style="color:#fff">Permitir</b>. Eso enciende la cámara.')+'</p>'+startButtons()+'</div>');setStatus('wait','Esperando tu permiso');livePill.classList.remove('on');btnShot.disabled=true;}
+function startButtons(){return '<div class="actions"><button class="btn" id="btnStart" type="button">Aceptar y encender</button><button class="btn ghost" id="btnHelp" type="button">Configurar permisos</button>'+(inFrame()?'<button class="btn cyan" id="btnTab" type="button">Abrir en pestaña nueva</button>':'')+'</div>';}
+function wireOverlay(){var s=document.getElementById('btnStart'),t=document.getElementById('btnTab'),h=document.getElementById('btnHelp'),b=document.getElementById('btnBack');
+if(s)s.onclick=function(e){e.stopPropagation();startCamera(true);};
+if(t)t.onclick=function(e){e.stopPropagation();window.open(OPEN_URL,'_blank','noopener');};
+if(h)h.onclick=function(e){e.stopPropagation();showHelp();};
+if(b)b.onclick=function(e){e.stopPropagation();idleCard();};}
+function idleCard(msg){showOverlay('<div class="card"><h2>¡Sonríe!</h2><p>'+(msg||'Pulsa el botón. En el recuadro del navegador elige <b style="color:#fff">Permitir</b>.')+'</p>'+startButtons()+'</div>');setStatus('wait','Esperando tu permiso');livePill.classList.remove('on');btnShot.disabled=true;}
 function failCard(title,msg){showOverlay('<div class="card"><h2>'+title+'</h2><p>'+msg+'</p>'+startButtons()+'</div>');}
+function showHelp(){var b=detectBrowser();var lis=helpSteps().map(function(s){return '<li>'+s+'</li>';}).join('');showOverlay('<div class="card"><div class="perm">'+b.name+' · cámara</div><h2>Permisos</h2><ol class="steps">'+lis+'</ol><div class="actions"><button class="btn" id="btnStart" type="button">Ya lo permití, encender</button><button class="btn ghost" id="btnBack" type="button">Volver</button>'+(inFrame()?'<button class="btn cyan" id="btnTab" type="button">Abrir en pestaña nueva</button>':'')+'</div></div>');setStatus('wait','Configura el permiso');}
+function refreshPermHint(){var b=detectBrowser();var map={granted:'Permitida',denied:'Bloqueada',prompt:'Aún no preguntó'};document.getElementById('permHint').innerHTML='Navegador: <b style="color:#fff">'+b.name+'</b><br>Estado: <b style="color:#fff">'+(map[permState]||permState)+'</b>. Yo no puedo cambiar el candado del navegador; tú sí, en 3 toques.';}
 FILTERS.forEach(function(f,i){var b=document.createElement('button');b.className='filter'+(i===0?' active':'');b.type='button';b.innerHTML='<span style="filter:'+f.css+'"></span><em>'+f.name+'</em>';b.onclick=function(){filter=f;video.style.filter=f.css;document.querySelectorAll('.filter').forEach(function(x){x.classList.remove('active');});b.classList.add('active');};filtersEl.appendChild(b);});
 document.querySelectorAll('[data-mode]').forEach(function(c){c.onclick=function(){mode=c.getAttribute('data-mode');document.querySelectorAll('[data-mode]').forEach(function(x){x.classList.toggle('active',x===c);});};});
 document.querySelectorAll('[data-timer]').forEach(function(c){c.onclick=function(){timer=Number(c.getAttribute('data-timer'));document.querySelectorAll('[data-timer]').forEach(function(x){x.classList.toggle('active',x===c);});};});
+document.getElementById('btnSideHelp').onclick=function(){showHelp();};
 function beep(freq,dur){try{var ac=new (window.AudioContext||window.webkitAudioContext)();var o=ac.createOscillator(),g=ac.createGain();o.type='square';o.frequency.value=freq;g.gain.value=0.05;o.connect(g);g.connect(ac.destination);o.start();o.stop(ac.currentTime+dur);setTimeout(function(){ac.close();},(dur+0.1)*1000);}catch(e){}}
 async function startCamera(fromUser){
 if(starting||stream) return;
-if(!window.isSecureContext){failCard('Hace falta HTTPS','Abre la cabina en una pestaña nueva (enlace seguro) para usar la cámara.');setStatus('bad','Contexto inseguro');return;}
+if(!window.isSecureContext){failCard('Hace falta HTTPS','Abre la cabina en una pestaña nueva para usar la cámara.');setStatus('bad','Contexto inseguro');return;}
 if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia){failCard('Sin cámara','Este navegador no permite acceder a la webcam.');setStatus('bad','No disponible');return;}
-if(cameraPolicyBlocked()){failCard('Cámara bloqueada aquí','Esta vista incrustada no deja usar la webcam. Ábrela en una pestaña nueva y pulsa Aceptar y encender.');setStatus('bad','Bloqueada en iframe');return;}
+if(cameraPolicyBlocked()){failCard('Cámara bloqueada aquí','Esta vista incrustada no deja usar la webcam. Ábrela en una pestaña nueva.');setStatus('bad','Bloqueada en iframe');return;}
 starting=true;
-showOverlay('<div class="card"><div class="spin"></div><p>Pidiendo permiso… elige <b style="color:#fff">Permitir</b> en el recuadro del navegador.</p></div>');
+showOverlay('<div class="card"><div class="spin"></div><p>Pidiendo permiso… elige <b style="color:#fff">Permitir</b>.</p></div>');
 setStatus('wait','Pidiendo permiso');
 try{
-if(stream) stream.getTracks().forEach(function(t){t.stop();});
 stream=await navigator.mediaDevices.getUserMedia({audio:false,video:{facingMode:{ideal:facing},width:{ideal:1280},height:{ideal:960}}});
-video.srcObject=stream;video.setAttribute('playsinline','true');video.muted=true;
-await video.play();
+video.srcObject=stream;video.setAttribute('playsinline','true');video.muted=true;await video.play();
 video.style.filter=filter.css;video.classList.toggle('mirror',facing==='user');
-hideOverlay();livePill.classList.add('on');btnShot.disabled=false;
+hideOverlay();livePill.classList.add('on');btnShot.disabled=false;permState='granted';refreshPermHint();
 setStatus('live',facing==='user'?'Cámara frontal':'Cámara trasera');
 var devices=await navigator.mediaDevices.enumerateDevices();
 btnFlip.classList.toggle('hidden',devices.filter(function(d){return d.kind==='videoinput';}).length<2);
 }catch(err){
 var name=err&&err.name;
-if(name==='NotAllowedError'||name==='PermissionDeniedError'){
-if(!fromUser){idleCard('El navegador necesita un toque tuyo. Pulsa <b style="color:#fff">Aceptar y encender</b> y luego Permitir.');setStatus('wait','Toca para permitir');}
-else if(inFrame()){failCard('Hay que abrirla fuera','Si no viste Permitir, ábrela en una pestaña nueva. Si lo denegaste, actívalo en el candado de la barra.');setStatus('bad','Permiso denegado');}
-else {failCard('Permiso denegado','En el candado de la barra de dirección elige Permitir cámara y pulsa otra vez Aceptar y encender.');setStatus('bad','Permiso denegado');}
+if(name==='NotAllowedError'||name==='PermissionDeniedError'){permState='denied';refreshPermHint();
+if(!fromUser){idleCard('Pulsa <b style="color:#fff">Aceptar y encender</b> y luego Permitir.');setStatus('wait','Toca para permitir');}
+else {showHelp();setStatus('bad','Permiso denegado');}
 }else if(name==='NotFoundError'||name==='OverconstrainedError'){failCard('No hay cámara','No encontramos un dispositivo de video.');setStatus('bad','Sin dispositivo');}
 else if(name==='NotReadableError'){failCard('Cámara ocupada','Otra app está usando la cámara.');setStatus('bad','Cámara ocupada');}
 else {failCard('Algo falló',(err&&err.message)?err.message:'No se pudo abrir la cámara.');setStatus('bad','Error');}
@@ -179,11 +196,9 @@ btnShot.disabled=true;livePill.classList.remove('on');stream=null;
 }finally{starting=false;}
 }
 btnFlip.onclick=async function(){if(stream){stream.getTracks().forEach(function(t){t.stop();});stream=null;}facing=facing==='user'?'environment':'user';await startCamera(true);};
-overlay.addEventListener('click',function(){if(!stream) startCamera(true);});
+overlay.addEventListener('click',function(e){if(!stream&&e.target===overlay) startCamera(true);});
 window.addEventListener('focus',function(){if(!stream) startCamera(false);});
-if(navigator.permissions&&navigator.permissions.query){
-try{navigator.permissions.query({name:'camera'}).then(function(p){p.onchange=function(){if(p.state==='granted'&&!stream) startCamera(true);};if(p.state==='granted') startCamera(false);});}catch(e){}
-}
+if(navigator.permissions&&navigator.permissions.query){try{navigator.permissions.query({name:'camera'}).then(function(p){permState=p.state;refreshPermHint();p.onchange=function(){permState=p.state;refreshPermHint();if(p.state==='granted'&&!stream) startCamera(true);};if(p.state==='granted') startCamera(false);});}catch(e){refreshPermHint();}} else refreshPermHint();
 function captureFrame(){var w=720,h=960,c=document.createElement('canvas');c.width=w;c.height=h;var ctx=c.getContext('2d');var vw=video.videoWidth||w,vh=video.videoHeight||h;var scale=Math.max(w/vw,h/vh),sw=w/scale,sh=h/scale,sx=(vw-sw)/2,sy=(vh-sh)/2;ctx.filter=filter.css==='none'?'none':filter.css;if(facing==='user'){ctx.translate(w,0);ctx.scale(-1,1);}ctx.drawImage(video,sx,sy,sw,sh,0,0,w,h);ctx.setTransform(1,0,0,1,0,0);ctx.filter='none';ctx.fillStyle='rgba(18,8,26,.55)';ctx.font='700 18px Outfit, sans-serif';ctx.fillText('FLASHBOOTH · '+filter.name,18,h-22);return c.toDataURL('image/jpeg',0.92);}
 function addShot(dataUrl,kind){var item={id:Date.now()+Math.random(),dataUrl:dataUrl,kind:kind||'foto'};shots.unshift(item);lastId=item.id;btnDl.disabled=false;renderFilm();return item;}
 function renderFilm(){film.innerHTML='';if(!shots.length){film.innerHTML='<div class="empty">Todavía no hay instantáneas. ¡Enciende la cámara y posa!</div>';return;}shots.forEach(function(s){var el=document.createElement('button');el.className='shot';el.type='button';el.innerHTML='<img alt="" /><small>'+(s.kind==='tira'?'TIRA':'FOTO')+'</small>';el.querySelector('img').src=s.dataUrl;el.onclick=function(){openShot(s.id);};film.appendChild(el);});}
@@ -199,7 +214,7 @@ function wait(ms){return new Promise(function(r){setTimeout(r,ms);});}
 async function countdown(){countEl.classList.add('show');for(var n=timer;n>=1;n--){if(!busy)break;countEl.querySelector('b').textContent=String(n);beep(n===1?880:520,0.07);await wait(1000);}countEl.classList.remove('show');}
 function doFlash(){flashEl.classList.remove('go');void flashEl.offsetWidth;flashEl.classList.add('go');beep(180,0.09);if(navigator.vibrate)navigator.vibrate(30);}
 function makeStrip(urls){var w=420,pad=24,gap=12,ph=500,head=58,foot=48,c=document.createElement('canvas');c.width=w;c.height=head+foot+urls.length*ph+(urls.length-1)*gap+pad*2;var ctx=c.getContext('2d');ctx.fillStyle='#fff6e8';ctx.fillRect(0,0,c.width,c.height);ctx.fillStyle='#ff2d95';ctx.fillRect(0,0,8,c.height);ctx.fillStyle='#22f0ff';ctx.fillRect(c.width-8,0,8,c.height);ctx.fillStyle='#12081a';ctx.font='800 26px Outfit, sans-serif';ctx.fillText('FLASHBOOTH',pad+8,42);var y0=head+pad/2;return new Promise(function(resolve){var loaded=0;urls.forEach(function(u,i){var img=new Image();img.onload=function(){ctx.drawImage(img,pad,y0+i*(ph+gap),w-pad*2,ph);loaded++;if(loaded===urls.length){ctx.fillStyle='#6b5a78';ctx.font='600 14px Outfit, sans-serif';ctx.fillText(new Date().toLocaleString(),pad+8,c.height-20);resolve(c.toDataURL('image/jpeg',0.92));}};img.src=u;});});}
-async function shoot(){if(busy||!stream||video.readyState<2)return;busy=true;btnShot.disabled=true;btnFlip.disabled=true;setStatus('wait',mode==='strip'?'Tira en curso':'Cuenta regresiva');try{if(mode==='single'){await countdown();if(!busy)return;doFlash();addShot(captureFrame(),'foto');setStatus('live','Foto lista');}else{var frames=[];for(var i=0;i<4;i++){setStatus('wait','Pose '+(i+1)+' de 4');await countdown();if(!busy)return;doFlash();var url=captureFrame();addShot(url,'foto');frames.push(url);if(i<3)await wait(650);}var strip=await makeStrip(frames);addShot(strip,'tira');downloadUrl(strip,'flashbooth-tira-'+Date.now()+'.jpg');setStatus('live','Tira lista');}}finally{busy=false;btnShot.disabled=!stream;btnFlip.disabled=false;if(stream)setStatus('live',facing==='user'?'Cámara frontal':'Cámara trasera');}}
+async function shoot(){if(busy||!stream||video.readyState<2)return;busy=true;btnShot.disabled=true;btnFlip.disabled=true;setStatus('wait',mode==='strip'?'Tira en curso':'Cuenta regresiva');try{if(mode==='single'){await countdown();if(!busy)return;doFlash();addShot(captureFrame(),'foto');}else{var frames=[];for(var i=0;i<4;i++){setStatus('wait','Pose '+(i+1)+' de 4');await countdown();if(!busy)return;doFlash();var url=captureFrame();addShot(url,'foto');frames.push(url);if(i<3)await wait(650);}var strip=await makeStrip(frames);addShot(strip,'tira');downloadUrl(strip,'flashbooth-tira-'+Date.now()+'.jpg');}}finally{busy=false;btnShot.disabled=!stream;btnFlip.disabled=false;if(stream)setStatus('live',facing==='user'?'Cámara frontal':'Cámara trasera');}}
 btnShot.onclick=shoot;
 window.addEventListener('keydown',function(e){if(e.code==='Space'&&!e.repeat&&!/INPUT|TEXTAREA/.test(e.target.tagName)){e.preventDefault();if(stream)shoot();else startCamera(true);}if(e.code==='Escape'){busy=false;countEl.classList.remove('show');box.classList.remove('on');}});
 idleCard();
